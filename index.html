@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Campus Unlock – Build Your First AI Project in 60 Minutes</title>
+<style>
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#fdf8f4;--cd:#fff;--tx:#2d2a45;--mu:#7a7694;--ac:#7c6cf0;--ac2:#f58fb4;--lav:#ece7ff;--mint:#dcf6e8;--peach:#ffe6d8;--sky:#def0ff;--pink:#ffe1ec;--ln:#efe9e4}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);background-image:radial-gradient(circle at 10% 0,var(--lav),transparent 40%),radial-gradient(circle at 100% 20%,var(--pink),transparent 35%);background-attachment:fixed;color:var(--tx);font-family:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55}
+main{max-width:680px;margin:0 auto;padding:16px 16px 60px}
+nav{display:flex;gap:6px;background:#fff;border-radius:40px;padding:5px;margin-bottom:16px;box-shadow:0 4px 18px #7c6cf01a}
+nav button{flex:1;background:none;border:0;color:var(--mu);padding:9px 4px;border-radius:30px;cursor:pointer;font-size:.88rem;font-family:inherit}
+nav button.on{background:linear-gradient(120deg,var(--ac),var(--ac2));color:#fff;font-weight:600}
+h1{font-size:1.65rem;line-height:1.2;margin:.1em 0 .3em}h2{font-size:1.05rem;margin:0 0 10px}.mu{color:var(--mu);font-size:.9rem}
+.cd{background:var(--cd);border-radius:20px;padding:18px;margin-bottom:14px;box-shadow:0 6px 24px #7c6cf014}
+.hero{background:linear-gradient(135deg,var(--lav),var(--pink));}
+.btn{background:linear-gradient(120deg,var(--ac),var(--ac2));color:#fff;border:0;border-radius:14px;padding:13px 16px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;margin-top:12px;font-family:inherit;box-shadow:0 6px 16px #7c6cf033}
+.btn.s{background:#fff;color:var(--ac);box-shadow:inset 0 0 0 2px var(--lav)}
+.opt{display:block;width:100%;text-align:left;background:var(--bg);color:var(--tx);border:2px solid transparent;border-radius:14px;padding:13px;margin-top:9px;font-size:1rem;cursor:pointer;font-family:inherit}.opt:hover{border-color:var(--ac);background:var(--lav)}
+input,select{width:100%;padding:12px;margin-top:9px;border:2px solid var(--ln);border-radius:12px;background:#fff;color:var(--tx);font-size:1rem;font-family:inherit}input:focus{outline:0;border-color:var(--ac)}
+.bar{height:11px;background:var(--lav);border-radius:8px;overflow:hidden;margin-top:5px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--ac2));border-radius:8px;transition:width .5s}.bar i.ok{background:linear-gradient(90deg,#4fd1a1,#8be0c0)}
+.row{display:flex;justify-content:space-between;gap:8px;font-size:.92rem;margin-top:12px}
+.tag{display:inline-block;border-radius:20px;padding:3px 11px;font-size:.78rem;margin:3px 4px 3px 0;font-weight:500}
+.t1{background:var(--sky)}.t2{background:var(--mint)}.t3{background:var(--peach)}.t4{background:var(--pink)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:12px}
+.st{border-radius:16px;padding:12px;text-align:center}.st b{display:block;font-size:1.4rem}.st span{font-size:.75rem;color:var(--mu)}
+.score{font-size:3.2rem;font-weight:800;background:linear-gradient(120deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.sharecard{background:linear-gradient(135deg,var(--sky),var(--lav) 55%,var(--pink));border-radius:22px;padding:20px;text-align:center}
+.step{display:flex;gap:10px;margin-top:10px;font-size:.92rem}.step b{flex:0 0 26px;height:26px;border-radius:50%;background:var(--lav);color:var(--ac);display:grid;place-items:center;font-size:.8rem}
+.tier{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:12px;margin-top:8px;background:var(--bg);font-size:.9rem}.tier.on{background:var(--mint)}
+.tick{background:#fff;border-radius:30px;padding:8px 14px;font-size:.84rem;margin-bottom:12px;box-shadow:0 4px 14px #7c6cf014}
+details{border-bottom:1px solid var(--ln);padding:9px 0}summary{cursor:pointer;font-weight:600;font-size:.92rem}
+.sc{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.9rem}td,th{padding:7px 4px;border-bottom:1px solid var(--ln);text-align:left}
+.cnt{display:flex;gap:8px;margin:10px 0}.cnt div{flex:1;background:#fff;border-radius:14px;padding:8px 0;text-align:center}.cnt b{display:block;font-size:1.3rem;color:var(--ac)}.cnt span{font-size:.7rem;color:var(--mu)}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+</style></head><body><main>
+<nav><button id="t-quiz" onclick="go('quiz')">🎯 Score</button><button id="t-lb" onclick="go('lb')">🏆 Rankings</button><button id="t-dash" onclick="go('dash')">📊 Admin</button></nav>
+<div id="app"></div></main>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const GOAL=25,TARGET=500,WS=new Date('2026-10-13T19:00:00+05:30'),REF=new URLSearchParams(location.search).get('ref')||'direct';
+const CH=new URLSearchParams(location.search).get('ch'),FROM=new URLSearchParams(location.search).get('from')||'A friend';
+let API=false,db=null,regs=[],evs=[],view='quiz',q=0,ans=[],me=null;
+try{me=JSON.parse(localStorage.getItem('cu_me')||'null')}catch(e){}
+const Q=[
+{t:'How comfortable are you with Python?',o:[['Never used it',0],['Basics only',8],['Comfortable',16],['Strong',20]]},
+{t:'Projects built beyond coursework?',o:[['None yet',0],['1 small one',8],['2–3',16],['4 or more',20]]},
+{t:'Hours per week you can invest?',o:[['Under 2',4],['2–5',10],['5–10',15],['10+',20]]},
+{t:'Which AI area excites you most?',o:[['💬 Chatbots & language',0,'nlp'],['👁 Vision & images',0,'cv'],['📈 Prediction & data',0,'ml'],['🤖 Automation & agents',0,'auto']]},
+{t:'Your target role?',o:[['Software developer',0,'SDE'],['Data / ML engineer',0,'ML'],['Core / other branch',0,'Core'],['Not sure yet',0,'Open']]}];
+const P={nlp:['Resume Roaster Bot','Python · LLM API · Streamlit','45 min',['Pick an LLM API and write your first prompt','Build a resume text → feedback function','Wrap it in a Streamlit page','Deploy free and add the link to your resume']],
+cv:['Classroom Attendance Spotter','Python · OpenCV · pretrained model','55 min',['Set up OpenCV and load a pretrained face model','Detect faces in a photo','Match names from a small sample set','Export an attendance sheet']],
+ml:['Campus Placement Predictor','Python · pandas · scikit-learn','50 min',['Load a placement dataset with pandas','Clean and pick features','Train a simple classifier','Show predictions in a small web form']],
+auto:['WhatsApp Study-Buddy Agent','Python · LLM API · webhook','55 min',['Create an LLM-powered Q&A function','Add notes as context','Expose it through a webhook','Test it with a real chat message']]};
+const TIERS=[[1,'🌱 Starter: 1 friend joined'],[3,'⚡ Priority blueprint pack: 3 friends'],[5,'🏅 Top Referrer badge: 5 friends'],[10,'🎁 Voucher draw entry: 10 friends']];
+const FAQ=[['Is it really free?','Yes. 60 minutes, live, no payment.'],['Do I need AI experience?','No. Basic programming is enough, and the quiz picks a beginner-friendly project.'],['What do I get after?','A working project and a resume line you can show in interviews.'],['What if I miss it live?','Registered students get the recording link.']];
+// data layer
+function ldl(){try{regs=JSON.parse(localStorage.getItem('cu_regs')||'[]');evs=JSON.parse(localStorage.getItem('cu_ev')||'[]')}catch(e){}}
+async function put(col,obj,key){if(API&&col==='events'){api('event',{type:obj.type,ref:obj.ref}).catch(()=>{});return}
+ if(db){try{key?await db.collection(col).doc(key).set(obj):await db.collection(col).add(obj);return}catch(e){}}
+ const arr=col==='regs'?regs:evs;if(key&&arr.some(x=>x.key===key))return;arr.push(obj);
+ try{localStorage.setItem(col==='regs'?'cu_regs':'cu_ev',JSON.stringify(arr))}catch(e){}render()}
+const ev=t=>put('events',{type:t,ref:REF,t:Date.now()});
+function sub(n,f){db.collection(n).onSnapshot(s=>{f(s.docs.map(d=>d.data()));render()},()=>{})}
+(async()=>{try{const s=await api('state');API=true;regs=s.regs;evs=s.evs;setInterval(poll,5000)}catch(e){}if(!API)try{db=await claude.use('db')}catch(e){}
+ if(API){}else if(db){sub('regs',a=>regs=a);sub('events',a=>evs=a)}else ldl();render();setInterval(()=>{if(view==='quiz'||view==='res')tickTime()},1000)})();
+// logic
+const score=()=>Math.round(25+ans.slice(0,3).reduce((a,x)=>a+x[1],0)/60*65);
+const cN=s=>s.toLowerCase().replace(/\s+/g,' ').trim(),ago=t=>{const m=Math.max(1,Math.round((Date.now()-t)/60000));return m<60?m+'m ago':Math.round(m/60)+'h ago'};
+function go(v){view=(v==='quiz'&&me)?'res':v;render()}
+function start(){q=0;ans=[];ev('quiz_start');view='q';render()}
+function pick(i){ans.push(Q[q].o[i]);q++;if(q>=Q.length){ev('quiz_done');view='reg'}render()}
+async function reg(){const n=$('#n').value.trim(),c=$('#c').value.trim(),b=$('#b').value,k=$('#k').value.trim().toLowerCase();
+ if(!n||!c||k.length<6){$('#err').textContent='Please fill name, college and a valid phone/email.';return}
+ const code=(n.replace(/[^a-z]/gi,'').slice(0,3)+Math.random().toString(36).slice(2,5)).toUpperCase();
+ const o={key:k.replace(/[^a-z0-9]/g,'_'),name:n,college:c,branch:b,score:score(),dom:ans[3][2],role:ans[4][2],code,ref:REF,t:Date.now()};
+ if(API){try{me=await api('register',{contact:k,name:n,college:c,branch:b,score:score(),dom:ans[3][2],role:ans[4][2],ref:REF});await poll(true)}catch(e){$('#err').textContent=e.message;return}}else{await put('regs',o,o.key);me=o}me.ax=ans.slice(0,3).map(x=>x[1]/20);try{localStorage.setItem('cu_me',JSON.stringify(me))}catch(e){}view='res';render()}
+function colleges(){const m={};regs.forEach(r=>{const k=cN(r.college);m[k]=m[k]||{n:r.college,c:0};m[k].c++});return Object.values(m).sort((a,b)=>b.c-a.c)}
+const link=()=>location.origin+location.pathname+'?ref='+me.code;
+function lb(n){const L=colleges().slice(0,n||8);return L.length?L.map((x,i)=>`<div class="row"><span>${['🥇','🥈','🥉'][i]||i+1+'.'} ${esc(x.n)}</span><span>${x.c}/${GOAL}${x.c>=GOAL?' 🔓':''}</span></div><div class="bar"><i class="${x.c>=GOAL?'ok':''}" style="width:${Math.min(100,x.c/GOAL*100)}%"></i></div>`).join(''):'<p class="mu">No colleges yet. Be the first from yours.</p>'}
+function share0(){ev('share');window.open('https://wa.me/?text='+encodeURIComponent(`I scored ${me.score}/100 on the AI Project Readiness quiz 🎯\nHelp ${me.college} unlock the live workshop (${GOAL} registrations needed):\n${link()}`))}
+function copy(){ev('share');try{navigator.clipboard.writeText(link())}catch(e){}$('#cp').textContent='Copied ✓'}
+async function demo(){if(API){for(let i=0;i<6;i++)try{await api('register',{contact:'demo'+Date.now()+i+'@x.com',name:'Demo '+i,college:['JNTU Kakinada','Aditya Engg','GMRIT','Vignan'][i%4],branch:['CSE','IT','ECE'][i%3],score:60,dom:'ml',role:'SDE',ref:me?me.code:'direct',demo:true})}catch(e){}await poll(true);return}const C=['JNTU Kakinada','Aditya Engg','GMRIT','Vignan','JNTU Kakinada','Aditya Engg'];for(let i=0;i<6;i++){const c=C[Math.floor(Math.random()*C.length)],id='demo'+Date.now()+i;await put('regs',{key:id,name:'Demo '+i,college:c,branch:['CSE','IT','ECE'][i%3],score:60,dom:'ml',role:'SDE',code:'D'+i,ref:me?me.code:'AMB-'+(i%3+1),t:Date.now(),demo:true},id)}}
+function cd(){const d=Math.max(0,WS-Date.now()),f=(v,l)=>`<div><b>${String(v).padStart(2,'0')}</b><span>${l}</span></div>`;return f(Math.floor(d/864e5),'DAYS')+f(Math.floor(d%864e5/36e5),'HRS')+f(Math.floor(d%36e5/6e4),'MIN')+f(Math.floor(d%6e4/1e3),'SEC')}
+function tickTime(){const e=$('#cnt');if(e)e.innerHTML=cd()}
+const ticker0=()=>{const r=regs.slice().sort((a,b)=>b.t-a.t)[0];return r?`<div class="tick">🟢 <b>${esc(r.name.split(' ')[0])}</b> from ${esc(r.college)} just registered · ${ago(r.t)}</div>`:''};
+const hero=()=>`<div class="cd hero"><span class="tag t4">FREE LIVE WORKSHOP</span><h1>Build Your First AI Project in 60 Minutes</h1><p class="mu">Workshop starts 13 Oct, 7 PM IST (demo date)</p><div class="cnt" id="cnt">${cd()}</div><div class="row"><span><b>${regs.length}</b> of ${TARGET} seats claimed</span><span>${Math.max(0,TARGET-regs.length)} left</span></div><div class="bar"><i style="width:${Math.min(100,regs.length/TARGET*100)}%"></i></div></div>`;
+const faq=()=>`<div class="cd"><h2>Quick answers</h2>${FAQ.map(f=>`<details><summary>${f[0]}</summary><p class="mu">${f[1]}</p></details>`).join('')}</div>`;
+async function api(p,b){const r=await fetch('/api/'+p,b?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)}:{});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.detail||'Error');return j}
+async function poll(f){if(!f&&(view==='reg'||view==='q'))return;try{const s=await api('state');regs=s.regs;evs=s.evs;render()}catch(e){}}
+const roast=s=>s>=80?'Scary good. Recruiters should be nervous.':s>=60?'Solid base. One project away from standing out.':s>=40?'Good raw material. The workshop is your shortcut.':'Zero projects, big potential. Perfect time to start.';
+function radar(a){const pt=(i,v)=>{const g=(-90+i*120)*Math.PI/180;return(80+60*v*Math.cos(g)).toFixed(0)+','+(80+60*v*Math.sin(g)).toFixed(0)};return `<svg viewBox="0 0 160 160" width="190"><polygon points="${[0,1,2].map(i=>pt(i,1))}" fill="none" stroke="#ddd"/><polygon points="${[0,1,2].map(i=>pt(i,Math.max(.1,a[i])))}" fill="#7c6cf055" stroke="#7c6cf0" stroke-width="2"/><text x="80" y="10" font-size="9" text-anchor="middle">Python</text><text x="152" y="132" font-size="9" text-anchor="end">Projects</text><text x="8" y="132" font-size="9">Time</text></svg>`}
+function chal(){ev('share');window.open('https://wa.me/?text='+encodeURIComponent(`⚔️ I scored ${me.score}/100 on the AI Readiness quiz. Think you can beat me?\n${location.origin+location.pathname}?ref=${me.code}&ch=${me.score}&from=${encodeURIComponent(me.name.split(' ')[0])}`))}
+function dl(){const c=document.createElement('canvas');c.width=c.height=1080;const x=c.getContext('2d'),g=x.createLinearGradient(0,0,1080,1080);g.addColorStop(0,'#def0ff');g.addColorStop(.5,'#ece7ff');g.addColorStop(1,'#ffe1ec');x.fillStyle=g;x.fillRect(0,0,1080,1080);x.textAlign='center';x.fillStyle='#2d2a45';x.font='600 44px sans-serif';x.fillText(me.name+' · '+me.college,540,230);x.font='800 300px sans-serif';x.fillStyle='#7c6cf0';x.fillText(me.score,540,560);x.font='600 48px sans-serif';x.fillStyle='#2d2a45';x.fillText('AI Readiness Score / 100',540,640);x.fillText('Project: '+P[me.dom][0],540,740);x.font='500 38px sans-serif';x.fillText('Can you beat it? Free 60-min AI workshop',540,900);x.fillText(link(),540,970);const a=document.createElement('a');a.download='my-ai-score.png';a.href=c.toDataURL();a.click()}
+function boom(){for(let i=0;i<36;i++){const s=document.createElement('span');s.textContent=['🎉','✨','🎊','💜'][i%4];s.style.cssText=`position:fixed;top:-20px;left:${Math.random()*100}vw;font-size:${16+Math.random()*18}px;animation:fall ${2+Math.random()*2}s linear forwards;pointer-events:none;z-index:9`;document.body.appendChild(s);setTimeout(()=>s.remove(),4500)}}
+const myC=()=>{const n=colleges().find(x=>cN(x.n)===cN(me.college));return n?n.c:1};
+const MSG=[()=>`I scored ${me.score}/100 on the AI Readiness quiz 🎯 Help ${me.college} unlock the live workshop: ${link()}`,
+()=>`Placements are close and every JD says "AI project". Free 60-min workshop where you build one live. I scored ${me.score}/100. What's yours? ${link()}`,
+()=>`⏰ Seats are filling. ${me.college} needs ${Math.max(0,GOAL-myC())} more to unlock the live Q&A. Join now: ${link()}`,
+()=>`Bro I got ${me.score}/100 on this AI quiz 😭 ${roast(me.score)} Try it and tell me your score: ${link()}`];
+let MV=0;
+function share(){ev('share');window.open('https://wa.me/?text='+encodeURIComponent(MSG[MV]()))}
+const pulse=()=>{const B={};regs.forEach(r=>B[r.branch]=(B[r.branch]||0)+1);const L=Object.entries(B).sort((a,b)=>b[1]-a[1]);if(!L.length)return'';const d0=new Date().setHours(0,0,0,0),today=regs.filter(r=>r.t>=d0).length,lead=L.length>1?`${esc(L[0][0])} leads ${esc(L[1][0])} by ${L[0][1]-L[1][1]}`:`${esc(L[0][0])} is leading`;return `<div class="tick">🔥 ${today} joined today · ${lead}${me?` · ${regs.filter(r=>r.t>=d0&&r.branch===me.branch).length} from your branch today`:''}</div>`};
+const ticker=()=>ticker0()+pulse();
+function pace(){const D=[...Array(7)].map((_,i)=>{const s=new Date();s.setHours(0,0,0,0);s.setDate(s.getDate()-6+i);return[s.toLocaleDateString('en',{weekday:'short'}),regs.filter(r=>r.t>=s.getTime()&&r.t<s.getTime()+864e5).length]}),mx=Math.max(1,...D.map(d=>d[1])),need=Math.ceil(TARGET/7),st=regs.length>=TARGET?'🎯 Target hit':D[6][1]>=need?'✅ On pace today':'⚠️ Behind pace: push the best channel';return `<div class="cd"><h2>📅 Daily pace (need ~${need}/day)</h2><div style="display:flex;gap:6px;align-items:flex-end;height:100px">${D.map(d=>`<div style="flex:1;text-align:center;font-size:.7rem"><div style="height:${d[1]/mx*70}px;min-height:3px;background:linear-gradient(var(--ac),var(--ac2));border-radius:6px"></div>${d[1]}<br>${d[0]}</div>`).join('')}</div><p class="mu">${st}</p><p class="mu">Decision rules: Day-2 total under 100 → double ambassador outreach. Referral share under 20% → raise the reward. One college over 40% → rank by % of its goal.</p>${API?'<a class="tag t1" href="/api/admin/csv" target="_blank">⬇️ Export CSV</a>':''}</div>`}
+// views
+function render(){const on=v=>$('#t-'+v).className=v==='quiz'?(['quiz','q','reg','res'].includes(view)?'on':''):(view===v?'on':'');['quiz','lb','dash'].forEach(on);
+ let h='';if(view==='quiz'&&me)view='res';
+ if(view==='quiz')h=ticker()+hero()+`<div class="cd"><h2>${CH?esc(FROM)+' scored '+esc(CH)+'/100. Can you beat it? 😏':'Are you ahead or behind on AI?'}</h2><p class="mu">Answer 5 quick questions. Get your AI Readiness Score, a matched project, and a step-by-step blueprint.</p>${REF!=='direct'?`<p><span class="tag t2">Invited by ${esc(REF)}</span></p>`:''}<button class="btn" onclick="start()">Check my score →</button></div><div class="cd"><h2>🏫 Colleges racing to unlock</h2>${lb(5)}</div>`+faq();
+ else if(view==='q'){const x=Q[q];h=`<div class="cd"><p class="mu">Question ${q+1} of ${Q.length}</p><div class="bar"><i style="width:${q/Q.length*100}%"></i></div><h2 style="margin-top:16px;font-size:1.2rem">${x.t}</h2>${x.o.map((o,i)=>`<button class="opt" onclick="pick(${i})">${o[0]}</button>`).join('')}</div>`}
+ else if(view==='reg'){const p=P[ans[3][2]];h=`<div class="sharecard"><p class="mu" style="margin:0">Your AI Readiness Score</p><div class="score">${score()}/100</div><p><b>Matched project:</b> ${p[0]}</p><span class="tag t1">${p[1]}</span><span class="tag t3">⏱ ${p[2]}</span></div><div class="cd" style="margin-top:14px"><h2>🔒 Unlock your full blueprint</h2><p class="mu">Register free to see the 4-step build plan and join the live workshop.</p><input id="n" placeholder="Full name"><input id="c" placeholder="College name"><select id="b"><option>CSE</option><option>IT</option><option>ECE</option><option>EEE</option><option>Mech</option><option>Civil</option><option>Other</option></select><input id="k" placeholder="WhatsApp number or email"><p id="err" class="mu" style="color:#d6336c"></p><button class="btn" onclick="reg()">Unlock my blueprint 🔓</button></div>`}
+ else if(view==='res'&&me){const p=P[me.dom],n=colleges().find(x=>cN(x.n)===cN(me.college)),c=n?n.c:1,refs=regs.filter(r=>r.ref===me.code).length,rank=colleges().findIndex(x=>cN(x.n)===cN(me.college))+1;
+  h=ticker()+`<div class="sharecard"><p class="mu" style="margin:0">${esc(me.name)} · ${esc(me.college)}</p><div class="score">${me.score}/100</div><p style="margin:6px 0"><b>${p[0]}</b></p><p class="mu"><i>${roast(me.score)}</i></p>${CH?`<p><span class="tag t4">You ${me.score>=+CH?"beat":"trail"} ${esc(FROM)}'s ${esc(CH)}</span></p>`:""}<span class="tag t1">${p[1]}</span><span class="tag t3">⏱ ${p[2]}</span><span class="tag t2">For ${esc(me.role)} roles</span></div>
+  <div class="cd" style="margin-top:14px">${hero().replace(/^<div class="cd hero">/,'<div>').replace('<h1>','<h2>').replace('</h1>','</h2>')}</div>
+  <div class="cd" style="text-align:center"><h2>📡 Your skill shape</h2>${radar(me.ax||[.5,.5,.5])}</div><div class="cd"><h2>🗺 Your project blueprint (unlocked)</h2>${p[3].map((s,i)=>`<div class="step"><b>${i+1}</b><span>${s}</span></div>`).join('')}</div>
+  <div class="cd"><h2>🔓 Unlock ${esc(me.college)}</h2><div class="cards"><div class="st t1"><b>${c}/${GOAL}</b><span>registered</span></div><div class="st t4"><b>#${rank||1}</b><span>college rank</span></div><div class="st t2"><b>${refs}</b><span>friends joined</span></div></div><div class="bar" style="margin-top:12px"><i class="${c>=GOAL?'ok':''}" style="width:${Math.min(100,c/GOAL*100)}%"></i></div><p class="mu">At ${GOAL}, your college gets a live Q&A and a Top Campus badge.</p>${c>=GOAL?'<p><span class="tag t2">🎉 Unlocked! Share the win in your class group</span></p>':''}<select onchange="MV=+this.value">${["😊 Friendly","🎯 Career-focused","⏰ Urgent","😎 Casual"].map((o,i)=>`<option value="${i}" ${MV==i?"selected":""}>Message style: ${o}</option>`).join("")}</select><button class="btn" onclick="share()">Share on WhatsApp</button><button class="btn s" onclick="chal()">⚔️ Challenge a friend</button><button class="btn s" onclick="dl()">⬇️ Download score card</button><button class="btn s" id="cp" onclick="copy()">Copy my link</button><p class="mu" style="word-break:break-all">${esc(link())}</p></div>
+  <div class="cd"><h2>🎯 Your referral rewards</h2>${TIERS.map(t=>`<div class="tier ${refs>=t[0]?'on':''}">${refs>=t[0]?'✅':'⬜'} ${t[1]}</div>`).join('')}</div>
+  <div class="cd"><h2>✅ Before the workshop</h2><div class="step"><b>1</b><span>Install Python 3.10+ (or use Google Colab)</span></div><div class="step"><b>2</b><span>Create a free account for your LLM API of choice</span></div><div class="step"><b>3</b><span>Invite 3 friends to unlock the priority pack</span></div></div>`+faq()}
+ else if(view==='lb'){const br={};regs.forEach(r=>{br[r.branch]=(br[r.branch]||0)+1});const tr={};regs.forEach(r=>{if(r.ref&&r.ref!=='direct'&&!r.demo)tr[r.ref]=(tr[r.ref]||0)+1});const T=Object.entries(tr).sort((a,b)=>b[1]-a[1]).slice(0,5),names={};regs.forEach(r=>names[r.code]=r.name);
+  h=`<div class="cd"><h2>🏆 College leaderboard</h2>${lb(10)}</div><div class="cd"><h2>⭐ Top referrers</h2>${T.length?'<table>'+T.map((x,i)=>`<tr><td>${i+1}</td><td>${esc(names[x[0]]||x[0])}</td><td>${x[1]} friends</td></tr>`).join('')+'</table>':'<p class="mu">No referrals yet.</p>'}</div><div class="cd"><h2>🎓 By branch</h2>${Object.entries(br).sort((a,b)=>b[1]-a[1]).map(x=>`<span class="tag t1">${esc(x[0])} · ${x[1]}</span>`).join('')||'<p class="mu">No data yet.</p>'}</div>`}
+ else if(view==='dash'){const n=t=>evs.filter(e=>e.type===t).length,st=n('quiz_start'),dn=n('quiz_done'),rg=regs.length,sh=n('share'),pc=(a,b)=>b?Math.round(a/b*100)+'%':'–';
+  const src={};regs.forEach(r=>{src[r.ref]=(src[r.ref]||0)+1});const top=Object.entries(src).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const avg=rg?Math.round(regs.reduce((a,r)=>a+(r.score||0),0)/rg):0,viral=rg?(regs.filter(r=>r.ref!=='direct').length/rg).toFixed(2):'–';
+  h=`<div class="cd"><h2>📊 Live funnel</h2><div class="cards"><div class="st t1"><b>${st}</b><span>quiz started</span></div><div class="st t4"><b>${pc(dn,st)}</b><span>completed</span></div><div class="st t2"><b>${rg}</b><span>registered (${pc(rg,dn)})</span></div><div class="st t3"><b>${pc(sh,rg)}</b><span>shared</span></div></div><div class="bar" style="margin-top:14px"><i style="width:${Math.min(100,rg/TARGET*100)}%"></i></div><p class="mu">${rg}/${TARGET} registered · ₹${rg?(2000/rg).toFixed(1):'–'} per registration (₹2,000 budget)</p></div>
+  ${pace()}<div class="cd"><h2>Key metrics</h2><div class="cards"><div class="st t1"><b>${viral}</b><span>share from referrals</span></div><div class="st t2"><b>${avg}</b><span>avg readiness score</span></div><div class="st t3"><b>${colleges().length}</b><span>colleges active</span></div></div></div>
+  <div class="cd"><h2>Registrations by source</h2>${top.length?'<table>'+top.map(x=>`<tr><td>${esc(x[0])}</td><td>${x[1]}</td></tr>`).join('')+'</table>':'<p class="mu">No data yet.</p>'}</div>
+  <div class="cd"><h2>Demo tools</h2><p class="mu">Adds 6 fake registrations, flagged demo:true, so you can show the dashboard moving.</p><button class="btn s" onclick="demo()">+ Simulate 6 registrations</button></div>`}
+ $('#app').innerHTML=h;tickTime();if(view==='res'&&me){const n=colleges().find(x=>cN(x.n)===cN(me.college));if(n&&n.c>=GOAL&&!window._b){window._b=1;boom()}}}
+</script></body></html>
